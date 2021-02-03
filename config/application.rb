@@ -22,6 +22,7 @@ require 'sprockets/railtie'
 Bundler.require(*Rails.groups)
 
 module RailsTodoApp
+  # Application main class
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -33,5 +34,10 @@ module RailsTodoApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'application.yml')
+      YAML.safe_load(File.open(env_file)).each { |k, v| ENV[k.to_s] = v } if File.exist?(env_file)
+    end
   end
 end
