@@ -1,0 +1,15 @@
+<h1><%= @list.name %></h1>
+<h2><%= link_to 'My Lists', lists_path %></h2>
+
+<ol>
+  <% @tasks.each do | task | %>
+    <li>
+      <%= task.title %>
+      <% if task.notes %>
+        <ul>
+          <li><%= task.notes %></li>
+        </ul>
+      <% end %>
+    </li>
+  <% end %>
+</ol>

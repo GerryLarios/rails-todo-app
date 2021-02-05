@@ -3,7 +3,9 @@
 <ol>
   <% @lists.each do | list | %>
     <li>
-      <%= list.name %> (<%= list.tasks.count %> tasks)
+      <%= link_to list_tasks_path(list) do%>
+        <%= list.name %> (<%= list.tasks.count %> tasks)
+      <% end %>
     </li>
   <% end %>
 </ol>
